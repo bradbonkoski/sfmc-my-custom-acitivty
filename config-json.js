@@ -14,7 +14,7 @@ module.exports = function configJSON(req) {
     workflowApiVersion: '1.1',
     // metaData points 
     metaData: {
-      icon: 'images/apex_120.png',
+      icon: 'images/offer-icon.webp',
       category: 'custom'
     },
     type: 'REST',
