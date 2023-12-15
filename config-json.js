@@ -20,8 +20,8 @@ module.exports = function configJSON(req) {
     type: 'REST',
     lang: {
       'en-US': {
-        name: 'Custom Code Activity',
-        description: 'Makes a POST call with payload to a specific URL'
+        name: 'Flex Pecs',
+        description: 'Creates Offer in Pecs'
       }
     },
     // Contains information sent to the activity each time it executes. 
