@@ -74,13 +74,13 @@ function onInitActivity(payload) {
     //console.log(offerStringObj)
 
     if (offerStringObj) {
-    prePopulateInput('offer_type', offerStringObj.offer_type)
+    prePopulateInput('offer_type', offerStringObj)
   }
 
   //console.log(amountStringObj)
 
   if (amountStringObj) {
-    prePopulateInput('amount', JSON.stringify(amountStringObj.amount, null, 4))
+    prePopulateInput('amount', amountStringObj)
   }
 
 }
