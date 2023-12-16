@@ -192,9 +192,11 @@ app.post('/execute', async (req, res) => {
         "variable_amount": false
       }))
           .then(function (response) {
+            console.log('Response from axios?')
             logger('RESP: ', response);
           })
           .catch(function (error) {
+            console.log('Exception from axios?')
             logger('ERROR: ', error);
           })
       
