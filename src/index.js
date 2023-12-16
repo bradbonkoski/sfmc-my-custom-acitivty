@@ -66,6 +66,8 @@ function onInitActivity(payload) {
     inArguments = []
   }
 
+    console.log(inArguments)
+
   let offerStringObj = inArguments.find((obj) => obj.offerString)
   let amountStringObj = inArguments.find((obj) => obj.amountValue)
 
