@@ -172,7 +172,10 @@ app.post('/execute', async (req, res) => {
       logger('reqOptions: ', reqOptions)
       
       // not going to bother using 'await'...will slow down code waiting for response
-      axios(reqOptions) 
+      axios(reqOptions)
+          .then(function (response) {
+        logger(response)
+      })
       
     } else {
       return res.status(500).json({
