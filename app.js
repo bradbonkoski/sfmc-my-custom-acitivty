@@ -133,17 +133,34 @@ app.post('/execute', async (req, res) => {
       console.log('preparing payload...making request to url...')
       let reqOptions; 
       let contactKey = req.body.keyValue
-      let urlString = req.body.inArguments[0].urlString
-      let payload = req.body.inArguments[0].payload
-      console.log(payload)
+      let offerType = req.body.inArguments[0].offerString
+      let amount = req.body.inArguments[0].amountValue
+      console.log(amount)
       // add contactKey, eventDate to payload
-      payload.contactKey = contactKey
+      //payload.contactKey = contactKey
+
+      let urlString = "https://pecs-offerredeem-png.pngaming.com:8443/OfferManagement/offer/insert"
             
-      if (urlString && Object.keys(payload).length > 0) {
+      if (offerType && amount) {
+        dNow = new Date();
+        dExpire = dNow.setDate(dNow.getDate() + 1)
         reqOptions = {
           method: 'POST',
           url: urlString,
-          data: JSON.stringify(payload)
+          data: JSON.stringify({
+            "cost":1,
+            "name":"PennCashOffer - Journey",
+            "description":"Brad Journey Offer",
+            "start_date": dNow.toISOString(),
+            "end_date": dExpire.toLocaleString(),
+            "promo_groupid":6,
+            "property_code":"WY",
+            "sub_type": "MCMA - New App Member Promo",
+            "type": "Penn Cash",
+            "universal_id": "IX202732767",
+            "value": amount,
+            "variable_amount": false
+          })
         }
       } else {
         reqOptions = {
