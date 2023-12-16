@@ -177,6 +177,8 @@ app.post('/execute', async (req, res) => {
       //   logger(response)
       // })
 
+      console.log('Prepare to send...')
+
       axios.post(urlString, JSON.stringify({
         "cost":1,
         "name":"PennCashOffer - Journey",
@@ -199,6 +201,8 @@ app.post('/execute', async (req, res) => {
             console.log('Exception from axios?')
             logger('ERROR: ', error);
           })
+
+      console.log('Done sending???')
       
     } else {
       return res.status(500).json({
