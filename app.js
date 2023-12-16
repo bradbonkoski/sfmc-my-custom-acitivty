@@ -11,7 +11,7 @@
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const path        = require('path');
-const axios       = require('axios')
+const axios       = require('axios').default;
 
 const app = express();
 const configJSON = require('./config-json');
@@ -169,13 +169,34 @@ app.post('/execute', async (req, res) => {
         }
       }
       
-      logger('reqOptions: ', reqOptions)
+      logger('reqOptions: ', reqOptions);
       
       // not going to bother using 'await'...will slow down code waiting for response
-      axios(reqOptions)
+      // axios(reqOptions)
+      //     .then(function (response) {
+      //   logger(response)
+      // })
+
+      axios.post(urlString, JSON.stringify({
+        "cost":1,
+        "name":"PennCashOffer - Journey",
+        "description":"Brad Journey Offer",
+        "start_date": dNow.toISOString(),
+        "end_date": dExpire.toLocaleString(),
+        "promo_groupid":6,
+        "property_code":"WY",
+        "sub_type": "MCMA - New App Member Promo",
+        "type": "Penn Cash",
+        "universal_id": "IX202732767",
+        "value": amount,
+        "variable_amount": false
+      }))
           .then(function (response) {
-        logger(response)
-      })
+            logger('RESP: ', response);
+          })
+          .catch(function (error) {
+            logger('ERROR: ', error);
+          })
       
     } else {
       return res.status(500).json({
