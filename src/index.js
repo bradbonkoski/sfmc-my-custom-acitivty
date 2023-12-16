@@ -76,7 +76,7 @@ function onInitActivity(payload) {
   console.log(amountStringObj)
 
   if (amountStringObj) {
-    prePopulateInput('payload', JSON.stringify(amountStringObj.amount, null, 4))
+    prePopulateInput('amount', JSON.stringify(amountStringObj.amount, null, 4))
   }
 
 }
