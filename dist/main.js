@@ -400,7 +400,7 @@ let activity = {};
 // Wait for the document to load before we do anything
 document.addEventListener('DOMContentLoaded', function main() {
   // setup our ui event handlers
-  document.getElementById('url').addEventListener('keyup', onFormEntry)
+  document.getElementById('offer_type').addEventListener('keyup', onFormEntry)
 
   if (isDev) {
     console.log("DEV MODE ENABLED - TRIGGERING MOCK JB -> CUSTOM ACTIVITY SIGNAL")
@@ -463,14 +463,14 @@ function prePopulateInput(inputFieldId, inputValue) {
 }
 
 function onDoneButtonClick() {
-  urlString = document.getElementById('url').value
+  urlString = document.getElementById('offer_type').value
   
   if (urlString.length > 0) {
     // we must set metaData.isConfigured in order to tell JB that this activity
     // is ready for activation
     activity.metaData.isConfigured = true; 
 
-    payloadValue = document.getElementById('payload').value
+    payloadValue = document.getElementById('amount').value
 
     if (payloadValue) {
       // THE CODE BELOW DOESN'T ALLOW FOR DATA BINDING
@@ -482,7 +482,7 @@ function onDoneButtonClick() {
 
       // }
       
-      let payload = JSON.parse(payloadValue)
+      let payload = payloadValue
       
       activity.arguments.execute.inArguments = [ {urlString, payload } ]  
     } else {
