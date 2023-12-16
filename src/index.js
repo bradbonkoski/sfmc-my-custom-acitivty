@@ -24,7 +24,7 @@ let activity = {};
 // Wait for the document to load before we do anything
 document.addEventListener('DOMContentLoaded', function main() {
   // setup our ui event handlers
-  document.getElementById('url').addEventListener('keyup', onFormEntry)
+  document.getElementById('offer_type').addEventListener('keyup', onFormEntry)
 
   if (isDev) {
     console.log("DEV MODE ENABLED - TRIGGERING MOCK JB -> CUSTOM ACTIVITY SIGNAL")
@@ -66,17 +66,17 @@ function onInitActivity(payload) {
     inArguments = []
   }
 
-  let urlStringObj = inArguments.find((obj) => obj.urlString)
-  let payloadStringObj = inArguments.find((obj) => obj.payload)
+  let offerStringObj = inArguments.find((obj) => obj.offer_typeString)
+  let amountStringObj = inArguments.find((obj) => obj.amountString)
 
-  if (urlStringObj) {
-    prePopulateInput('url', urlStringObj.urlString)
+  if (offerStringObj) {
+    prePopulateInput('offer_type', offerStringObj.offer_tye)
   }
 
-  console.log(payloadStringObj)
+  console.log(amountStringObj)
 
-  if (payloadStringObj) {
-    prePopulateInput('payload', JSON.stringify(payloadStringObj.payload, null, 4))
+  if (amountStringObj) {
+    prePopulateInput('payload', JSON.stringify(amountStringObj.amount, null, 4))
   }
 
 }
@@ -87,16 +87,16 @@ function prePopulateInput(inputFieldId, inputValue) {
 }
 
 function onDoneButtonClick() {
-  urlString = document.getElementById('url').value
+  offerString = document.getElementById('offer_type').value
   
-  if (urlString.length > 0) {
+  if (offerString.length > 0) {
     // we must set metaData.isConfigured in order to tell JB that this activity
     // is ready for activation
     activity.metaData.isConfigured = true; 
 
-    payloadValue = document.getElementById('payload').value
+    amountValue = document.getElementById('amount').value
 
-    if (payloadValue) {
+    if (amountValue) {
       // THE CODE BELOW DOESN'T ALLOW FOR DATA BINDING
       // try {
       //   payload = JSON.parse(payloadValue)
@@ -106,18 +106,16 @@ function onDoneButtonClick() {
 
       // }
       
-      let payload = JSON.parse(payloadValue)
-      
-      activity.arguments.execute.inArguments = [ {urlString, payload } ]  
+      activity.arguments.execute.inArguments = [ {offerString, amountValue } ]
     } else {
-      activity.arguments.execute.inArguments = [ {urlString} ] 
+      activity.arguments.execute.inArguments = [ {offerString} ]
     }
     
     connection.trigger('updateActivity', activity)
     console.log(`Activity has been updated. Activity: ${JSON.stringify(activity)}`)
 
   } else {
-    document.getElementById('url-field').classList.add('slds-has-error')
+    document.getElementById('offer-field').classList.add('slds-has-error')
     document.getElementById('form-error-url').style.display = null
   }
 }

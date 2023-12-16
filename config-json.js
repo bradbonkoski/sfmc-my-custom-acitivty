@@ -76,14 +76,14 @@ module.exports = function configJSON(req) {
       arguments: {
         execute: {
           inArguments: [
-            { 
-              urlString: {
+            {
+              offer_typeString: {
                 dataType: 'Text',
                 isNullable: 'False',
                 direction: 'out',
                 access: 'visible'
               },
-              payload: {
+              amountString: {
                 dataType: 'Text',
                 isNullable: 'True',
                 direction: 'out',
