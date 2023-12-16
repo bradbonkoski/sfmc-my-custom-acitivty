@@ -61,7 +61,7 @@ function onInitActivity(payload) {
     activity.arguments.execute.inArguments &&
     activity.arguments.execute.inArguments.length > 0
   ) {
-    inArguments = activity.arguments.execute.inArguments
+    inArguments = activity.arguments.execute.inArguments[0]
   } else {
     inArguments = []
   }
