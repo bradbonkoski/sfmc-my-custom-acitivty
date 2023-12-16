@@ -69,7 +69,9 @@ function onInitActivity(payload) {
   let offerStringObj = inArguments.find((obj) => obj.offerString)
   let amountStringObj = inArguments.find((obj) => obj.amountValue)
 
-  if (offerStringObj) {
+    console.log(offerStringObj)
+
+    if (offerStringObj) {
     prePopulateInput('offer_type', offerStringObj.offer_type)
   }
 
